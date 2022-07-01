@@ -1,13 +1,15 @@
-export default {
+import { DataSource } from "typeorm"
+import { AddTableUser1656706084178 } from "../migration/1656706084178-AddTableUser";
+import { UserEntity } from "../table-entity/user.entity";
+
+export const appDataSource = new DataSource ({
   type: 'sqlite',
-  database: process.env.DB_PATH_SQLITE,
-  entities: ['dist/**/*.entity{.ts,.js}'],
+  database: 'database.db',
   synchronize: false,
+  entities: [UserEntity],
+  migrations: [AddTableUser1656706084178],
   logging: true,
-  migrationsRun: false,
-  migrations: [__dirname + '/../migration/**/*.ts'],
-  cli: {
-    migrationsDir: 'src/infra/database/migration',
-    entitiesDir: 'src/infra/database/table-entity',
-  },
-};
+  migrationsRun: false
+});
+
+

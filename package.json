@@ -19,9 +19,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "generate-migration": "yarn run typeorm migration:generate -d ./src/infra/database/config/database.providers.ts src/infra/database/migration/AddTableUser",
-    "apply-migration": "yarn run typeorm -d ./src/infra/database/config/database.providers.ts migration:run"
+    "typeorm": "typeorm-ts-node-esm -d ./src/infra/database/config/database.providers.ts",
+    "generate-migration": "yarn typeorm migration:generate",
+    "apply-migration": "yarn typeorm migration:run",
+    "revert-migration": "yarn typeorm migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",

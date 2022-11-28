@@ -21,7 +21,7 @@ export class UsersService {
     }
   }
 
-  findAll() {
+  async findAll() {
     return userRepository.findAll()
   }
 
